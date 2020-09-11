@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<title></title>
+
+<body>
+    <script>
+        function something() {
+            if(Date.now()%2===1) {
+                console.log('当前时间为奇数，可以执行')
+            } else {
+                throw new Error('当前时间为偶数，无法执行')
+            }
+        }
+        try {
+            something()
+        } catch(error) {
+            console.log(error.message);
+        }
+        
+    </script>
+</body>
+
+</html>
+
+const p = new Promise((resolve,reject) => {
+setTimeout(() => {
+const time = Date.now();
+if(time %2 == 0) {
+resolve('成功的数据：' + time);
+} else {
+reject('失败的数据：' + time);
+}
+},1000);
+})
+
+p.then(
+value => {
+console.log("成功的回调",value);
+},
+reason => {
+console.log("失败的回调",reason);
+}
+)
