@@ -1,37 +1,37 @@
 <!DOCTYPE html>
-<html>
-<title>promise的几个关键问题</title>
-
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise的关键问题</title>
+</head>
 <body>
     <script>
         /* 
-            4.promise.then()返回的新promise的结果由什么决定？
-                (1)简单表达:由then()指定的回调函数执行的结果决定
-                (2)详细表达:
-                    1.如果抛出异常，新的promise变为rejected，reason为抛出的异常
-                    2.如果返回的是非promise的任意值，新promise变为resolved,value为返回的值
-                    3.如果返回的是另一个新promise,此promise的结果就会成为新的promise的结果
+        1.如何改变promise的状态？
+            (1)resolve(value):
+            (2)reject(reason):
+            (3)抛出异常:如果当前是pending就会变成rejected
+
+        2. 一个promise指定多个成功/失败回调函数，都会调用？
+            当promise改变为对应状态时都会调用
         */
-        new Promise((resolve,reject) => {
-            reject(1)
-        }).then(
-            value => {
-                console.log('onResolved()1',value);
-                
-            },
-            (reason) => {
-                console.log('onRejected()1',reason);
-                return 3
-            }
-        ).then(
-            (value) => {
-                console.log('onResolved()2',value);
-            },
-            (reason) => {
-                console.log('onRejected()2',reason);
-            }
+        const p = new Promise((resolve,reject) => {
+            resolve(1) // promise变为resloved成功状态
+            // reject(2) // promise变为rejected失败状态
+            // throw new Error('出错了') // 抛出异常，promise变为rejected失败状态，reason为 抛出的error
+            throw (3) // 抛出异常，promise 变为 rejected失败状态，reason为 抛出的3
+        })
+
+        p.then(
+            value => {console.log('value',value);},
+            reason => {}
         )
+        p.then(
+            value => {console.log('value2',value);},
+            reason => {}
+        )
+
     </script>
 </body>
-
 </html>
