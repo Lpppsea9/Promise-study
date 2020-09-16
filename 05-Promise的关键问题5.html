@@ -28,8 +28,7 @@
             value => {
                 console.log('onResolved1()',value);
                 return 2
-            },
-            reason => {throw reason}
+            }//reason => {throw reason} //没写相当于写了这个
         ).then(
             value => {
                 console.log('onResolved2()',value);
@@ -43,7 +42,7 @@
         ).catch(
             reason => {
                 console.log('onRejected1()',reason);
-                // throw reason
+                // throw reason 
                 return new Promise.reject(reason)
             }
         ).then(
