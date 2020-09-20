@@ -42,8 +42,9 @@
         ).catch(
             reason => {
                 console.log('onRejected1()',reason);
-                // throw reason 
-                return new Promise.reject(reason)
+                // throw reason
+                // return Promise.reject(reason)
+                return new Promise(() => {}) //返回一个pending的promise，中断promise链
             }
         ).then(
             value => {
