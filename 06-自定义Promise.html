@@ -6,7 +6,7 @@
   <title>自定义Promise</title>
 </head>
 <body>
-  <script src="./lib/Promise.js"></script>
+  <script src="./lib/Promise_class.js"></script>
   <!-- <script>
     const p = new Promise((resolve,reject) => {
       setTimeout(() => {
@@ -88,14 +88,14 @@
     const p5 = Promise.reject(6)
 
     const pAll = Promise.all([p1,p2])
-    pAll.then(
-      values => {
-        console.log('race onResolved()',values);
-      },
-      reason => {
-        console.log('race onRejected()',reason);
-      }
-    )
+    // pAll.then(
+    //   values => {
+    //     console.log('race onResolved()',values);
+    //   },
+    //   reason => {
+    //     console.log('race onRejected()',reason);
+    //   }
+    // )
 
 
     // const pRace = Promise.race([p4,7,p5,p1,p2])
