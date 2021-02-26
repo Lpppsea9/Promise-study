@@ -9,9 +9,9 @@
   <script> 
   
     const first = () => (new Promise((resolve, reject) => {
-      console.log(3)
+      console.log(3) //1
       let p = new Promise((resolve,reject) => {
-        console.log(7)
+        console.log(7) //2
         setTimeout(() => {
           console.log(5)
           resolve(6) //没用，只能改一次
@@ -20,7 +20,7 @@
       })
       resolve(2)
       p.then((arg) => {
-        console.log(arg)
+        console.log(arg) 
       })
     }))
 
@@ -28,7 +28,7 @@
       console.log(arg)
     })
 
-    console.log(4)
+    console.log(4) //3
   </script>
 </body>
 </html>

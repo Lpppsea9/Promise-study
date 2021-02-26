@@ -16,13 +16,24 @@
         } catch(error) {
             console.log(error.message);
         }
+            
+        console.log("something之后") 
+        /*  
+        第一种情况
+            代码执行出内部自己抛出一个错误
+        第二种情况
+            自己主动 throw 出一个错误
+        出现错误的两种情况下要通过 try catch 主动去处理错误
+        不然后续的代码无法执行，如上如果不处理 error 则后面的
+        console.log无法执行 
+         */
         
     </script>
 </body>
 
 </html>
 
-<!-- const p = new Promise((resolve,reject) => {
+const p = new Promise((resolve,reject) => {
 setTimeout(() => {
 const time = Date.now();
 if(time %2 == 0) {
@@ -40,4 +51,4 @@ console.log("成功的回调",value);
 reason => {
 console.log("失败的回调",reason);
 }
-) -->
+)

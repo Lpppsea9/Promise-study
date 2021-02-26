@@ -4,51 +4,30 @@
 
 <body>
     <script>
-        new Promise((resolve,reject) => {
+        // 1.创建一个新的promise对象
+        const p = new Promise((resolve,reject) => {// 执行器函数
+            // 2.执行异步操作任务
             setTimeout(() => {
-                reject('失败的数据')
-            },1000)
-        }).then(
-            value => {
-                console.log('onResolved()1',value)
-            }
-        ).catch(
-            reason => {
-                console.log('onRejected()1',reason)
-            }
-        )
-
-        const p1 = new Promise((resolve,reject) => {
-            setTimeout(() => {
-                resolve(1)
-            },100)
+                const time = Date.now();
+                if(time %2 == 0) {
+                    // 3.1 如果成功了，调用resolve(value)
+                    resolve("成功的回调, time =" + time)
+                } else {
+                    // 3.2 如果失败了，调用reject(reason)
+                    reject("失败的回调, time =" + time)
+                }
+            },500)
         })
-        const p2 = Promise.resolve(2)
-        const p3 = Promise.reject(3)
 
-        // p1.then(value => {console.log(value)})
-        // p2.then(value => {console.log(value)})
-        // p3.catch(reason => {console.log(reason)})
-
-        const pAll = Promise.all([p1,p2])
-        // pAll.then(
-        //     values => {
-        //         console.log('all onResolved()', values);
-        //     },
-        //     reason => {
-        //         console.log('all onRejected()', reason);
-        //     }
-        // )
-
-        const pRace = Promise.race([p1,p2,p3])
-        pRace.then(
-            value => {
-                console.log('race onResolved()', value);
+        p.then(
+            value => { // 接收得到成功的数据
+                console.log("onResolved",value)
             },
             reason => {
-                console.log('race onRejected()', reason);
+                console.log("onRejected",reason)
             }
         )
+        
 
     </script>
 </body>

@@ -7,23 +7,29 @@
 </head>
 <body>
   <script>
-    setTimeout(() => {
+    /* 
+    1 7 
+
+    宏[0]
+    微[2]
+    */
+    setTimeout(() => { //宏
       console.log("0")
     },0)
     new Promise((resolve,reject)=> {
-      console.log("1")
+      console.log("1") //1
       resolve()
     }).then(() => {
-      console.log("2")
+      console.log("2") //微
       new Promise((resolve,reject) => {
-        console.log("3")
+        console.log("3") 
         resolve()
       }).then(() => {
         console.log("4")
       }).then(() => {
         console.log("5")
       })
-    }).then(() => {
+    }).then(() => {                                          
       console.log("6")
     })
 
