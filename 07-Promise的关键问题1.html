@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Promise的关键问题</title>
+    <title>Promise的关键问题1</title>
 </head>
 <body>
     <script>
@@ -17,19 +17,20 @@
             当promise改变为对应状态时都会调用
         */
         const p = new Promise((resolve,reject) => {
-            resolve(1) // promise变为resloved成功状态
+            // resolve(1) // promise变为resloved成功状态
             // reject(2) // promise变为rejected失败状态
             // throw new Error('出错了') // 抛出异常，promise变为rejected失败状态，reason为 抛出的error
-            throw (3) // 抛出异常，promise 变为 rejected失败状态，reason为 抛出的3
+            throw 3 // 抛出异常，promise 变为 rejected失败状态，reason为 抛出的3
         })
 
         p.then(
-            value => {console.log('value',value);},
-            reason => {}
+            value => {console.log(value)},
+            reason => {console.log("reason1", reason1)}
         )
+
         p.then(
-            value => {console.log('value2',value);},
-            reason => {}
+            value => {console.log(value)},
+            reason => {console.log("reason2", reason2)}
         )
 
     </script>

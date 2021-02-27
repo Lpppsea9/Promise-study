@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>promise的几个关键问题</title>
+    <title>promise的几个关键问题2</title>
 </head>
 <body>
     <script>
@@ -20,23 +20,24 @@
         // 常规：先指定回调函数，后改变状态
         new Promise((resolve,reject) => {
             setTimeout(() => {
-                resolve(1) //后改变状态(同时指定数据)，异步执行回调函数
+                resolve(1) // 2.后改变状态(同时指定数据 1)，异步执行回调函数
             },1000);
-        }).then( // 先指定回调函数，保存当前指定的回调函数
+        }).then( // 1.先指定回调函数，保存当前指定的回调函数(内部在做)
             value => {},
             reason => {console.log('reason',reason );}
         )
 
+        // 如何先改状态， 后指定回调函数
         new Promise((resolve,reject) => {
-            resolve(1) //先改变状态(同时指定数据)，异步执行回调函数
-        }).then( // 后指定回调函数，异步执行回调函数
+            resolve(1) //1.去掉定时器后就 先改变状态(同时指定数据)，异步执行回调函数
+        }).then( // 2.后指定回调函数，异步执行回调函数
             value => {console.log('value2',value )},
             reason => {console.log('reason2',reason);}
         )
 
         const p = new Promise((resolve,reject) => {
             setTimeout(() => {
-                resolve(1) //后改变状态(同时指定数据)，异步执行回调函数
+                resolve(1) //后改变的状态(同时指定数据)，异步执行回调函数
             },1000);
         })
 
